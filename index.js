@@ -34,11 +34,11 @@ app.use(session({
     },
     store: MongoStore.create({ mongoUrl: process.env.DB_CONNECTION_STRING })
 }));
-app.use('/api/users', users);
-app.use('/api/sessions', sessions);
-app.use('/api/category', categories);
-app.use('/api/products', products);
-app.use('/api/search', search);
+app.use('/users', users);
+app.use('/sessions', sessions);
+app.use('/category', categories);
+app.use('/products', products);
+app.use('/search', search);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Listening on PORT ${PORT}......`));
