@@ -15,14 +15,18 @@ mongoose.connect(process.env.DB_CONNECTION_STRING)
     .then(() => console.log('connected to MongoDB...'))
     .catch(err => console.error('could not connect to MongoDB..', err));
 
+const corsOptions = {
+    origin: process.env.ENV === "production" ? "https://amazon-myclone.herokuapp.com/" : "*"
+}
+
+app.use(cors(corsOptions))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 const { SESS_NAME,
     SESS_SECRET,
     SESS_LIFETIME
 } = process.env;
-
-app.use(cors())
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(session({
     name: SESS_NAME,
     secret: SESS_SECRET,
